@@ -15,7 +15,12 @@ public class Security {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        String originalString = "password";
+        System.out.println("Original String to encrypt - " + originalString);
+        String encryptedString = CBCEncryption.encrypt(originalString);
+        System.out.println("Encrypted String - " + encryptedString);
+        String decryptedString = CBCEncryption.decrypt(encryptedString);
+        System.out.println("After decryption - " + decryptedString);
     }
     
 }
