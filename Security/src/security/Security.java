@@ -10,9 +10,8 @@ public class Security {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //String originalString = "ManyaCampeon";
         
-        String [] lineasArchivo = ManejadorArchivosGenerico.leerArchivo("src/Security/Prueba1.txt");
+        String [] lineasArchivo = ManejadorArchivosGenerico.leerArchivo("src/Security/Carta_Presentacion_Proyecto.txt");
         String cadenaOriginal = "";
         String resultadoEncriptado = "";
         String resultadoDesEncriptado = "";
@@ -33,18 +32,10 @@ public class Security {
             }
                 
         }
-        
-        
+                
         System.out.println("La cadena original es: " + cadenaOriginal);
         System.out.println("El resultado encriptado es: " + resultadoEncriptado);
         System.out.println("El resultado desencriptado es: " + resultadoDesEncriptado);
         
-        
-        
-        //System.out.println("Cadena Original - " + originalString);
-        //String encryptedString = CBCEncryption.encrypt(originalString);
-        //System.out.println("Cadena Encriptada - " + encryptedString);
-        //String decryptedString = CBCEncryption.decrypt(encryptedString);
-        //System.out.println("Después de la desencriptación - " + decryptedString);
     }
 }
