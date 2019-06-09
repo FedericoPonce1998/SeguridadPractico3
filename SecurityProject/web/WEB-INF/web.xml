@@ -4,9 +4,17 @@
         <servlet-name>Hello</servlet-name>
         <servlet-class>MyServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Encrypt</servlet-name>
+        <servlet-class>security.Security</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
         <url-pattern>/Hello</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Encrypt</servlet-name>
+        <url-pattern>/Encrypt</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>
