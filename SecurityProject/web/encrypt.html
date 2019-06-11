@@ -12,11 +12,14 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-            <h1>Cifrado de archivos</h1>
+            <h3>Encriptacion de texto</h3>
             <br/>
             <form action="EncryptionServlet" method="POST" >
-            <input name="textToEncrypt" value="" />
-            <button type="submit" >Encriptar</button>
+                <div>
+                    Ingrese el texto a Encriptar
+                    <input placeholder="Texto a encriptar" name="textToEncrypt" value="" />
+                    <button type="submit" >Encriptar</button>
+                </div>
             </form>
         </div>
     </body>

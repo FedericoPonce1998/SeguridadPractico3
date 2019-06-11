@@ -12,6 +12,10 @@
         <servlet-name>EncryptionServlet</servlet-name>
         <servlet-class>EncryptionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FilesServlet</servlet-name>
+        <servlet-class>FilesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
         <url-pattern>/Hello</url-pattern>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>EncryptionServlet</servlet-name>
         <url-pattern>/EncryptionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilesServlet</servlet-name>
+        <url-pattern>/FilesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
