@@ -89,9 +89,9 @@ public class EncryptFilesServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // String fileName = request.getParameter("fileName");
+        String fileName = request.getParameter("fileName");
        
-       FileInputStream myStream = new FileInputStream("C:\\Users\\Noe\\Pictures\\minion.jpg");
+       FileInputStream myStream = new FileInputStream(fileName);
        byte[] imageInBytes = IOUtils.readFully(myStream, 0, true); 
         
         response.setContentType("text/html;charset=UTF-8");
