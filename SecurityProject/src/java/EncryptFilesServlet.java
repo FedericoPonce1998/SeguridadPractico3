@@ -107,22 +107,7 @@ public class EncryptFilesServlet extends HttpServlet {
             
             //String decryptedString = CBCEncryption.decrypt(encryptedString);
             //resultadoDesEncriptado = decryptedString;
-            
-            /*for (int j = 0; j< lineasArchivo.length; j++){
-                String[] lineas = lineasArchivo[j].split(" ");
-
-                for (int i=0; i<lineas.length; i++){
-                    String originalString = lineas[i];
-
-                    cadenaOriginal += originalString + " ";
-                    String encryptedString = CBCEncryption.encrypt(originalString);
-                    resultadoEncriptado = resultadoEncriptado + encryptedString;
-
-                    String decryptedString = CBCEncryption.decrypt(encryptedString);
-                    resultadoDesEncriptado = resultadoDesEncriptado + decryptedString + " ";
-                }
-
-            }*/
+           
         
             /*TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -135,6 +120,7 @@ public class EncryptFilesServlet extends HttpServlet {
             //out.println("<h1>" + "La cadena original es: " + cadenaOriginal + "</h1>");
             out.println("<h1>" + "El resultado encriptado es: " + resultadoEncriptado + "</h1>");
             //out.println("<h1>" + "El resultado desencriptado es: " + resultadoDesEncriptado + "</h1>");
+            out.println("<h3><a href=\"encryptfiles.html\">Volver</a></h3>");
             out.println("</body>");
             out.println("</html>");
         }
