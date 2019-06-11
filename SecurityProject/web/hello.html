@@ -9,29 +9,49 @@ and open the template in the editor.
         <title>Inicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            header {
+                background-color: #666;
+                padding: 20px;
+                text-align: center;
+                font-size: 25px;
+                color: white;
+              }
+            footer {
+                background-color: #777;
+                padding: 10px;
+                text-align: center;
+                color: white;
+              }           
+        </style>
     </head>
     <body>
-        <h1>
-            Bienvenido 
-        </h1>
+        <header>
+            <h2>Práctico 3</h2>
+        </header>
         
-        <!--<a href="Hello">Click me to go to hello page</a>-->
-        <br/>
-        <a href="encrypt.html">Encriptación de Texto</a>
-        <br />
-        <a href="files.html">Encriptación de Contenido Archivos TXT</a>
-        <br/>
-        <!--<image src="web-images/malwar22e.jpg" />-->
-         <a href="encryptfiles.html">Encriptación de todo tipo de archivo</a>
-        <br/>
+        <div>
+            <h1>
+                Listado de funcionalidades 
+            </h1>
         
-        <form action="Hello" method="POST" >
+            <ul>
+                <li><h3><a href="encrypt.html">Encriptación de Texto</a></h3></li>
+                <li><h3><a href="files.html">Encriptación de Contenido Archivos TXT</a></h3></li>
+                <li><h3><a href="encryptfiles.html">Encriptación de todo tipo de archivo</a></h3></li>
+            </ul>
+        </div>
+        
+       <!-- <form action="Hello" method="POST" >
             <input name="userName" value="" />
             <input name="password" value="" />
             <button type="submit" >Login</button>
         </form>
-        <button onclick="Register()">Register</button>
-        
+        <button onclick="Register()">Register</button>-->
+       <footer>
+           <p>Juan Dibot - María Parapar - Federico Ponce de León</p>
+       </footer>
     </body>
     
 </html>
