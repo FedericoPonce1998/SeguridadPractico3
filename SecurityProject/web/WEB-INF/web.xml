@@ -13,6 +13,10 @@
         <servlet-class>EncryptionServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EncryptFilesServlet</servlet-name>
+        <servlet-class>EncryptFilesServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>FilesServlet</servlet-name>
         <servlet-class>FilesServlet</servlet-class>
     </servlet>
@@ -36,6 +40,10 @@
     <servlet-mapping>
         <servlet-name>FilesServlet</servlet-name>
         <url-pattern>/FilesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncryptFilesServlet</servlet-name>
+        <url-pattern>/EncryptFilesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Encriptado de Archivos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel=StyleSheet href="estilos.css" type="text/css" media=screen> 
+    </head>
+    <body>
+        <header>
+            <h2>Práctico 3</h2>
+        </header>
+        <div class="box">
+            <table align="center">
+                <tr>
+                    <td><h1>Encriptar archivos</h1></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h3>Ingrese la ruta del archivo a cifrar</h3></td>
+                    <td>
+                        <form method="POST" action="EncryptFilesServlet">
+                            <div>                                
+                                <input placeholder="Nombre archivo" name="fileName" value="" />
+                                <button type="submit">Cifrar</button>
+                            </div>                       
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <footer>
+            <p>Juan Dibot - María Parapar - Federico Ponce de León</p>
+        </footer>
+    </body>
+</html>

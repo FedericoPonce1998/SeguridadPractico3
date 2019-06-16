@@ -69,7 +69,7 @@ public class FilesServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Error</h1>");
-            out.println("<h2>" + ex.getMessage() + "</h2>");
+           // out.println("<h2>" + ex.getMessage() + "</h2>");
             out.println("</body>");
             out.println("</html>");
         }
