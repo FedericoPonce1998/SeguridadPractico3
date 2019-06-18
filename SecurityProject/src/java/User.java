@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import javax.servlet.http.HttpSession;
 
 
 /*
@@ -19,10 +20,12 @@ import java.util.Base64;
 public class User {
     private String name;
     private String hashedPassword;
+    private HttpSession sessionId; 
     
     public User(String name, String pass) {
         this.name = name;
         this.hashedPassword = User.hashPassword(pass);
+        this.sessionId = null;
     }
 
     public String getName() {
@@ -40,6 +43,18 @@ public class User {
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
     }
+
+    public HttpSession getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(HttpSession sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public boolean isAutenticated() {
+        return this.sessionId != null;
+    }   
     
     public static String hashPassword(String toHash) {
         if (toHash.equals("")) return "";
@@ -52,5 +67,4 @@ public class User {
             return "";
         }
     }
-    
 }

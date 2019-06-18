@@ -7,11 +7,14 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.UnknownHostException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -95,24 +98,28 @@ public class Login extends HttpServlet {
         }
         else {
             DatabaseConnection db = new DatabaseConnection("securityProject");
-            boolean result = db.login(username, password);
-            try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet RegisterServlet</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                if (result) {
-                    out.println("<h1>Welcome " + username + "!</h1>");
+            User user = db.login(username, password);
+            if (user != null) {
+                HttpSession oldSession = request.getSession(false);
+                if (oldSession != null) {
+                    oldSession.invalidate();
                 }
-                else {
-                    out.println("<h1>An error ocurred, please try again</h1>");
-                }
+                 
+                //generate a new session
+                HttpSession newSession = request.getSession(true);
+
+                //setting session to expiry in 20 mins
+                newSession.setMaxInactiveInterval(20*60);
+                user.setSessionId(newSession);
+                Cookie cookie = new Cookie("message", "Welcome");
+                cookie.setSecure(true);
+                cookie.setHttpOnly(true);
+                response.addCookie(cookie);
+                ServletContext sc = getServletContext();
+                sc.setAttribute("currentUser", user);
+                response.sendRedirect("hello.html");
+            } else {
                 
-                out.println("</body>");
-                out.println("</html>");
             }
         }
     }

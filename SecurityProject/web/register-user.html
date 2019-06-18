@@ -6,19 +6,26 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Register</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel=StyleSheet href="estilos.css" type="text/css" media=screen> 
     </head>
     <body>
-        <h3>Register to this web page</h3>
+        <header>
+            <h2>Universidad Católica del Uruguay</h2>
+            <h2>Práctico 3</h2>
+        </header>
+        <h3>Registrarme</h3>
         <form method="POST" action="RegisterServlet">
-            <div>
-            <input type="text" placeholder="username" name="username" />
-            <input type="password" placeholder="password" name="password" />
-            <button type="submit">Registrar</button>
-            <a href="hello.html"><button>Volver</button></a>
-        </div>
+            <input type="text" placeholder="username" name="username" /> <br />
+            <input type="password" placeholder="password" name="password" /> <br />
+            <input type="submit" value="Registrarme" />
+            <button type="button" onclick="window.location.href='/SecurityProject/welcome.html'">Volver</button>
         </form>
+        <footer>
+           <p>Juan Dibot - María Parapar - Federico Ponce de León</p>
+       </footer>
     </body>
 </html>

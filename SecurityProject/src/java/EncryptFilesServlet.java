@@ -13,10 +13,13 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import security.CBCEncryption;
 import security.ManejadorArchivosGenerico;
 import sun.misc.IOUtils;
@@ -89,6 +92,22 @@ public class EncryptFilesServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        boolean logged = false;
+        
+        Cookie[] cookies = request.getCookies();
+        ServletContext sc = getServletContext();
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("JSESSIONID")) {
+                        User current = (User) sc.getAttribute("currentUser");
+                        if (current.getSessionId().getId().equals(cookie.getValue())) {
+                            logged = true;
+                        }
+                    }
+            }
+        }
+        
+        if (!logged) return;
         String fileName = request.getParameter("fileName");
         
         response.setContentType("text/html;charset=UTF-8");

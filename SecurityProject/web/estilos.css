@@ -28,3 +28,16 @@ footer {
     align-content: center;
     align-items: center;
 }
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+form > input {
+    min-height: 20px;
+    min-width: 110px;
+    padding: 5px;
+    margin: 5px;
+    font-size: 17px;
+}

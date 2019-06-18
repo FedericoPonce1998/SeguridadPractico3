@@ -57,10 +57,9 @@ public class DatabaseConnection {
         return founded != null;
     }
     
-    public boolean login(String username, String password) {
-        if (username.equals("") || password.equals("")) return false;
+    public User login(String username, String password) {
+        if (username.equals("") || password.equals("")) return null;
         
-        User newUser = new User(username, password);
         DBCollection col = this.mongoDataBase.getCollection("Users");
         BasicDBObject query = new BasicDBObject();
         User user = new User(username, password);
@@ -69,6 +68,7 @@ public class DatabaseConnection {
         
         DBObject founded = col.findOne(query);
         
-        return founded != null;
+        if (founded != null) return user;
+        return null;
     }
 }
