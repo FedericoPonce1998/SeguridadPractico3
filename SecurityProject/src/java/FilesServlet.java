@@ -88,27 +88,25 @@ public class FilesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean logged = false;
-        Cookie[] cookies = request.getCookies();
+        
+        try (PrintWriter out = response.getWriter()) {
+            Cookie[] cookies = request.getCookies();
         ServletContext sc = getServletContext();
         if(cookies != null){
             for(Cookie cookie : cookies){
-                    if(cookie.getName().equals("JSESSIONID")) {
-                        User current = (User) sc.getAttribute("currentUser");
-                        if (current.getSessionId().equals(cookie.getValue())) {
-                            logged = true;
-                        }
+                if(cookie.getName().equals("JSESSIONID")) {
+                    User current = (User) sc.getAttribute("currentUser");
+                    if (current == null || current.getSessionId() == null || !current.getSessionId().getId().equals(cookie.getValue())) {
+                        response.sendRedirect("unauthorized-error.html");
+                        return;
                     }
+                }
             }
         }
-        
-        if (!logged) return;
         
         String fileName = request.getParameter("fileName");
         
         response.setContentType("text/html;charset=UTF-8");
-        
-        try (PrintWriter out = response.getWriter()) {
             String [] lineasArchivo = ManejadorArchivosGenerico.leerArchivo(fileName);
 
             String cadenaOriginal = "";
@@ -150,17 +148,7 @@ public class FilesServlet extends HttpServlet {
             out.println("</html>");
         }
         catch (Exception ex) {
-            PrintWriter out = response.getWriter();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MyServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Error</h1>");
-            out.println("<h2>" + ex.getMessage() + "</h2>");
-            out.println("</body>");
-            out.println("</html>");
+            response.sendRedirect("exception-error.html");
         }
     }
 

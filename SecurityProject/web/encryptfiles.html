@@ -29,11 +29,10 @@ and open the template in the editor.
                 <tr>
                     <td><h3>Ingrese la ruta del archivo a cifrar</h3></td>
                     <td>
-                        <form method="POST" action="EncryptFilesServlet">
-                            <div>                                
+                        <form method="POST" action="EncryptFilesServlet">    
                                 <input placeholder="Nombre archivo" name="fileName" value="" />
                                 <button type="submit">Cifrar</button>
-                            </div>                       
+                                <button class="pull-right" onclick="action='Logout'" >Cerrar Session</button>
                         </form>
                     </td>
                     <td></td>

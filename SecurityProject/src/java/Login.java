@@ -89,7 +89,8 @@ public class Login extends HttpServlet {
     }// </editor-fold>
 
     private void login(HttpServletRequest request, HttpServletResponse response) throws UnknownHostException, IOException {
-        String username = request.getParameter("username");
+        try {
+            String username = request.getParameter("username");
         String password = request.getParameter("password");
         
         if (username == null || password == null || username.equals("") || password.equals("")) {
@@ -120,7 +121,14 @@ public class Login extends HttpServlet {
                 response.sendRedirect("hello.html");
             } else {
                 
+                
+
             }
+        }
+        
+        }
+        catch (IOException ex) {
+            response.sendRedirect("exception-error.html");
         }
     }
 }

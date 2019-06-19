@@ -34,10 +34,14 @@ footer {
     text-align: center;
 }
 
-form > input {
+form > input, form > button{
     min-height: 20px;
     min-width: 110px;
     padding: 5px;
     margin: 5px;
     font-size: 17px;
+}
+
+.pull-right {
+    float: right;
 }

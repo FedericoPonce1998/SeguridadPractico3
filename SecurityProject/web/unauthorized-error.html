@@ -6,28 +6,32 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Error</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel=StyleSheet href="estilos.css" type="text/css" media=screen> 
     </head>
+    
     <body>
-         <header>
+        <header>
             <h2>Universidad Católica del Uruguay</h2>
             <h2>Práctico 3</h2>
         </header>
         
-        <h3>Encriptar archivos</h3>
-        <form method="POST" action="FilesServlet">
-                Ingrese el nombre del archivo a cifrar
-                <input placeholder="Nombre archivo" name="fileName" value="" />
-                <button type="submit">Cifrar</button>
-                <button class="pull-right" onclick="action='Logout'" >Cerrar Session</button>
-        </form>
+        <div>
+            <h3>Vaya! Parece que no estas logueado. Inicia sesi&oacute;n <a href="/SecurityProject/welcome.html">aqu&iacute;</a> para disfrutar de nuestros servicios</h3>
+        </div>
         
-        <footer>
+       <!-- <form action="Hello" method="POST" >
+            <input name="userName" value="" />
+            <input name="password" value="" />
+            <button type="submit" >Login</button>
+        </form>
+        <button onclick="Register()">Register</button>-->
+       <footer>
            <p>Juan Dibot - María Parapar - Federico Ponce de León</p>
-        </footer>
+       </footer>
     </body>
+    
 </html>
