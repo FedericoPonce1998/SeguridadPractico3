@@ -22,11 +22,11 @@ public class CBCEncryption {
             return Base64.getEncoder().encodeToString(encrypted);
         } catch (Exception ex) {
             ex.printStackTrace();
+            return ex.getMessage();
         }
-        return null;
     }
     
-    public static String encryptByte(byte[] value) {
+    public static String encryptByte(byte[] value, String key, String initVector) {
         try {
             IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
@@ -39,8 +39,8 @@ public class CBCEncryption {
             return Base64.getEncoder().encodeToString(encrypted);
         } catch (Exception ex) {
             ex.printStackTrace();
+            return ex.getMessage();
         }
-        return null;
     }
     
     public static String decrypt(String encrypted) {
@@ -55,8 +55,7 @@ public class CBCEncryption {
             return new String(original);
         } catch (Exception ex) {
             ex.printStackTrace();
+            return ex.getMessage();
         }
-
-        return null;
     }
 }

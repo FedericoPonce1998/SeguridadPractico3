@@ -90,8 +90,12 @@ public class EncryptionServlet extends HttpServlet {
         }
         
         String textToEncrypt = request.getParameter("textToEncrypt");
-        
-        String encryptedText = CBCEncryption.encrypt(textToEncrypt);
+
+        String encryptedText = "";
+        if (!textToEncrypt.equals("")) {
+            encryptedText = CBCEncryption.encrypt(textToEncrypt);
+        }
+         
         
         response.setContentType("text/html;charset=UTF-8");
             /* TODO output your page here. You may use following sample code. */
@@ -101,7 +105,13 @@ public class EncryptionServlet extends HttpServlet {
             out.println("<title>Servlet MyServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + encryptedText + "</h1>");
+            if (!encryptedText.equals("")) {
+                out.println("<h1>" + encryptedText + "</h1>");
+            }
+            else {
+                out.println("<h3>Por favor, ingresa in texto a encriptar.</h3><br /> <h3>Hace click <a href='encrypt.html'>aqui</a> para volver</h3>");
+            }
+            
             out.println("</body>");
             out.println("</html>");
         }

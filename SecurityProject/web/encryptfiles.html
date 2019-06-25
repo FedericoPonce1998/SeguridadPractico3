@@ -17,27 +17,20 @@ and open the template in the editor.
             <h2>Práctico 3</h2>
         </header>
         <div class="box">
-            <table align="center">
-                <tr>
-                    <td><h1>Encriptar archivos</h1></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><h3>Ingrese la ruta del archivo a cifrar</h3></td>
-                    <td>
-                        <form method="POST" action="EncryptFilesServlet">    
-                                <input placeholder="Nombre archivo" name="fileName" value="" />
-                                <button type="submit">Cifrar</button>
-                                <button class="pull-right" onclick="action='Logout'" >Cerrar Session</button>
-                        </form>
-                    </td>
-                    <td></td>
-                </tr>
-            </table>
+            
+            <form method="POST" action="EncryptFilesServlet">  
+                <h3 style="float: left;">Ingrese la ruta del archivo a cifrar</h3>
+                <input style="float: left" placeholder="Nombre archivo" name="fileName" value="" /> <br/> <br/>
+                <h3 style="float: left;">Ingrese la ruta destino del archivo cifrado</h3>
+                <input style="float: left" placeholder="Nombre archivo" name="fileNameDestination" value="" /> <br/> <br/>
+                <h3 style="float: left;">Ingrese la clave para cifrar</h3>
+                <input style="float: left;" placeholder="Clave" name="key" value="" /> <br/>
+                <h3 style="float: left;">Ingrese el vector de inicializacion</h3>
+                <input style="float: left;" placeholder="Vector" name="initVector" value="" /> <br/>
+                <button type="submit">Cifrar</button> <br/>
+                <button class="pull-right" onclick="action='Logout'" >Cerrar Session</button>
+            </form>
+                    
         </div>
         <footer>
             <p>Juan Dibot - María Parapar - Federico Ponce de León</p>

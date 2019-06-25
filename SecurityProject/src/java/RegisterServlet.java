@@ -92,7 +92,7 @@ public class RegisterServlet extends HttpServlet {
         
         if (username == null || password == null || username.equals("") || password.equals("")) {
             
-            return;
+            response.sendRedirect("exception-error.html");
         }
         else {
             DatabaseConnection db = new DatabaseConnection("securityProject");

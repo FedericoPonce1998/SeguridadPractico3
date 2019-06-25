@@ -13,6 +13,9 @@
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -111,17 +114,23 @@ public class EncryptFilesServlet extends HttpServlet {
         }
         
         String fileName = request.getParameter("fileName");
+        String key = request.getParameter("key");
+        String initVector = request.getParameter("initVector");
+        String fileNameDestination = request.getParameter("fileNameDestination");
         
         response.setContentType("text/html;charset=UTF-8");
             FileInputStream myStream = new FileInputStream(fileName);
-            byte[] imageInBytes = IOUtils.readFully(myStream, 0, true); 
+            byte[] imageInBytes = Files.readAllBytes(Paths.get(fileName));
+            
        
             //String cadenaOriginal = "";
             String resultadoEncriptado = "";
             //String resultadoDesEncriptado = "";
 
-            String encryptedString = CBCEncryption.encryptByte(imageInBytes);
+            String encryptedString = CBCEncryption.encryptByte(imageInBytes, key, initVector);
             resultadoEncriptado = encryptedString;
+            
+            ManejadorArchivosGenerico.escribirArchivo(fileNameDestination, new String[] {resultadoEncriptado});
             
             //String decryptedString = CBCEncryption.decrypt(encryptedString);
             //resultadoDesEncriptado = decryptedString;
