@@ -120,7 +120,7 @@ public class Login extends HttpServlet {
                 sc.setAttribute("currentUser", user);
                 response.sendRedirect("hello.html");
             } else {
-                
+                response.sendRedirect("exception-error.html");
                 
 
             }
