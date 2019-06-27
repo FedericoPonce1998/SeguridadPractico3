@@ -13,8 +13,36 @@ and open the template in the editor.
         <link rel=StyleSheet href="estilos.css" type="text/css" media=screen> 
     </head>
     <body>
-        <div>
-            
+        <header>
+            <h2>Práctico 3</h2>
+        </header>
+        <div class="box">
+            <table align="center">
+                <tr>
+                    <td><h1>Firma digital</h1></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>                  
+                    <td>
+                        <form method="POST" action="FirmaServlet">    
+                            <h3>Ingrese la ruta del archivo</h3>    
+                            <input placeholder="Ruta de archivo" name="fileName" value="" />
+                            <h3>Ingrese la ruta de destino</h3>
+                            <input placeholder="Destino de archivo" name="destinoName" value=""/>
+                            <button type="submit">Cifrar</button>
+                            <button class="pull-right" onclick="action='Logout'" >Cerrar Session</button>
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
-    </body>
+        <footer>
+            <p>Juan Dibot - María Parapar - Federico Ponce de León</p>
+        </footer>
 </html>

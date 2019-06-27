@@ -41,5 +41,6 @@ public class EncryptFirma {
     public static final String PUBLIC_KEY_FILE = "/tmp/public.key";
 
     public static final int KEY_SIZE = 1024;
-        
+    
+       
 }
