@@ -181,10 +181,10 @@ public class EncryptFilesServlet extends HttpServlet {
             byte[] fileIv = new byte[16]; 
             fileIn.read(fileIv); 
             byte[] imageInBytes = Files.readAllBytes(Paths.get(fileName)); 
-            String parsedBytes = Base64.getEncoder().encodeToString(fileIn.); 
-            String decryptedString = CBCEncryption.decrypt(parsedBytes); 
+           // String parsedBytes = Base64.getEncoder().encodeToString(fileIn.); 
+            //String decryptedString = CBCEncryption.decrypt(parsedBytes); 
             //String cadenaOriginal = ""; 
-            ManejadorArchivosGenerico.escribirArchivo(fileNameDestination, new String[] {decryptedString}); 
+            //ManejadorArchivosGenerico.escribirArchivo(fileNameDestination, new String[] {decryptedString}); 
         } catch (Exception ex) { 
  
         } 
@@ -192,7 +192,7 @@ public class EncryptFilesServlet extends HttpServlet {
      
     private void foo(String fileName) { 
  
-        FileStream stream = new FileStream(fileName, FileMode.Open) 
+        //FileStream stream = new FileStream(fileName, FileMode.Open) 
         while (true) 
         { 
             byte[] convertedImage; 
@@ -200,18 +200,18 @@ public class EncryptFilesServlet extends HttpServlet {
             int size; 
             byte[] sizeBytes = new byte[4]; 
             // Read size 
-            int numRead = stream.Read(sizeBytes, 0, 4); 
-            if (numRead <= 0) { 
-                break; 
-            } 
+            //int numRead = stream.Read(sizeBytes, 0, 4); 
+            //if (numRead <= 0) { 
+            //    break; 
+            //} 
             // Convert to int 
-            size = BitConverter.ToInt32(sizeBytes, 0); 
+            //size = BitConverter.ToInt32(sizeBytes, 0); 
             // Allocate the buffer 
-            convertedImage = new byte[size]; 
-            stream.Read(convertedImage, 0, size); 
+            //convertedImage = new byte[size]; 
+           // stream.Read(convertedImage, 0, size); 
             // Do what you will with the array 
-            listOfArrays.Add(convertedImage); 
+            //listOfArrays.Add(convertedImage); 
         } // end while 
 } 
     } 
-} 
+//} 
