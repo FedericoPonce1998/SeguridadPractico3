@@ -32,9 +32,9 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class FileEncryption {
  
-    public static byte[] encrypt(String key, byte[] plainText) throws Exception {
+    public static byte[] encrypt(String key, String IVector, byte[] plainText) throws Exception {
       Key secretKey = new SecretKeySpec(key.getBytes(), "AES");
-      IvParameterSpec vectObj = new IvParameterSpec("92AE31A79FEEB2A3".getBytes("UTF-8"));
+      IvParameterSpec vectObj = new IvParameterSpec(IVector.getBytes("UTF-8"));
       //92AE31A79FEEB2A3
       Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
       
@@ -44,9 +44,9 @@ public class FileEncryption {
       return encrypted;
     }
     
-    public static byte[] decrypt(String key, byte[] encryptedText) throws Exception {
+    public static byte[] decrypt(String key, String IVector, byte[] encryptedText) throws Exception {
       Key sectretKey = new SecretKeySpec(key.getBytes(), "AES");
-      IvParameterSpec vectObj = new IvParameterSpec("92AE31A79FEEB2A3".getBytes("UTF-8"));
+      IvParameterSpec vectObj = new IvParameterSpec(IVector.getBytes("UTF-8"));
       Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
       
       aes.init(Cipher.DECRYPT_MODE, sectretKey, vectObj);
@@ -56,21 +56,21 @@ public class FileEncryption {
       return decrypted;
     }
     
-    public static void fullEncryption(String fileName, String fileNameDestination, String key) throws Exception {
+    public static void fullEncryption(String fileName, String fileNameDestination, String key, String IVector) throws Exception {
         File file = new File(fileName);
         byte[] byteFile = FileEncryption.readFileToByteArray(file);
         
-        byte[] encryptedFile = FileEncryption.encrypt(key, byteFile);
+        byte[] encryptedFile = FileEncryption.encrypt(key, IVector, byteFile);
         
         FileEncryption.writeFile(fileNameDestination, encryptedFile);
         
     }
     
-    public static void fullDecryption(String fileName, String fileNameDestination, String key) throws Exception {
+    public static void fullDecryption(String fileName, String fileNameDestination, String key, String IVector) throws Exception {
         File file = new File(fileName);
         byte[] byteFile = FileEncryption.readFileToByteArray(file);
         
-        byte[] decryptedFile = FileEncryption.decrypt(key, byteFile);
+        byte[] decryptedFile = FileEncryption.decrypt(key, IVector, byteFile);
         
         FileEncryption.writeFile(fileNameDestination, decryptedFile);
     }

@@ -117,19 +117,19 @@ public class EncryptFilesServlet extends HttpServlet {
          
         String fileName = request.getParameter("fileName"); 
         String key = request.getParameter("key"); 
-        String initVector = request.getParameter("initVector"); 
         String fileNameDestination = request.getParameter("fileNameDestination"); 
-        String decrypt = request.getParameter("decrypt"); 
+        String IVector = request.getParameter("IVector");
+        String decrypt = request.getParameter("decrypt");
          
         response.setContentType("text/html;charset=UTF-8"); 
         String output;
         
         if (decrypt != null) { 
-            FileEncryption.fullDecryption(fileName, fileNameDestination, key); 
+            FileEncryption.fullDecryption(fileName, fileNameDestination, key, IVector); 
             output = "<h1>El archivo se ha desencriptado en " + fileNameDestination + "</h1>"; 
         } 
         else {
-            FileEncryption.fullEncryption(fileName, fileNameDestination, key); 
+            FileEncryption.fullEncryption(fileName, fileNameDestination, key, IVector); 
             output = "<h1>El archivo se ha encriptado en " + fileNameDestination + "</h1>"; 
         } 
              
