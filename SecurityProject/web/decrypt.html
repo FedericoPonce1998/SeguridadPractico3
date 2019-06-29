@@ -17,11 +17,12 @@ and open the template in the editor.
             <h2>Práctico 3</h2>
         </header>
         <div>
-            <h3>Cifrado de texto</h3>
+            <h3>Descifrado de texto</h3>
             <br/>
             <form action="EncryptionServlet" method="POST" >
-                    <input placeholder="Texto a cifrar" name="text" value="" />
-                    <input type="submit" value="Encriptar" />
+                    <input placeholder="Texto a descifrar" name="text" value="" />
+                    <input type="submit" value="Descifrar" />
+                    <input type="hidden" name="decrypt" value="" />
                     <button class="pull-right" onclick="action='Logout'" >Cerrar Session</button>
             </form>
         </div>

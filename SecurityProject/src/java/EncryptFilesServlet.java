@@ -1,8 +1,11 @@
  
  
+import java.io.File;
 import java.io.FileInputStream; 
 import java.io.FileNotFoundException; 
+import java.io.FileOutputStream;
 import java.io.IOException; 
+import java.io.InputStream;
 import java.io.PrintWriter; 
 import java.nio.file.Files; 
 import java.nio.file.Path; 
@@ -11,6 +14,8 @@ import java.security.InvalidKeyException;
 import java.security.Key; 
 import static java.util.Arrays.stream; 
 import java.util.Base64; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.Cipher; 
 import javax.security.auth.kerberos.KerberosKey; 
 import javax.servlet.ServletContext; 
@@ -21,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
 import javax.servlet.http.HttpSession; 
 import security.CBCEncryption; 
+import security.FileEncryption;
 import security.ManejadorArchivosGenerico; 
 import sun.misc.BASE64Decoder; 
 import sun.misc.IOUtils; 
@@ -116,13 +122,14 @@ public class EncryptFilesServlet extends HttpServlet {
         String decrypt = request.getParameter("decrypt"); 
          
         response.setContentType("text/html;charset=UTF-8"); 
-        String output = ""; 
+        String output;
+        
         if (decrypt != null) { 
-            this.decryptFile(fileName, fileNameDestination); 
+            FileEncryption.fullDecryption(fileName, fileNameDestination, key); 
             output = "<h1>El archivo se ha desencriptado en " + fileNameDestination + "</h1>"; 
         } 
-        else { 
-            this.encryptFile(fileName, fileNameDestination, key, initVector); 
+        else {
+            FileEncryption.fullEncryption(fileName, fileNameDestination, key); 
             output = "<h1>El archivo se ha encriptado en " + fileNameDestination + "</h1>"; 
         } 
              
@@ -139,9 +146,7 @@ public class EncryptFilesServlet extends HttpServlet {
             out.println("<body>"); 
             //out.println("<h1>" + userName + "</h1>"); 
             //out.println("<h1>" + "La cadena original es: " + cadenaOriginal + "</h1>"); 
-            if (decrypt == null) { 
-                 
-            } 
+            
             out.println(output); 
             //out.println("<h1>" + "El resultado desencriptado es: " + resultadoDesEncriptado + "</h1>"); 
             out.println("<h3><a href=\"encryptfiles.html\">Volver</a></h3>"); 
@@ -150,6 +155,8 @@ public class EncryptFilesServlet extends HttpServlet {
         } 
         catch (Exception ex) { 
             response.sendRedirect("exception-error.html");     
+        } catch (Throwable ex) {
+            Logger.getLogger(EncryptFilesServlet.class.getName()).log(Level.SEVERE, null, ex);
         } 
     } 
  

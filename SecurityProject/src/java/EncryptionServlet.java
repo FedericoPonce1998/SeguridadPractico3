@@ -89,11 +89,15 @@ public class EncryptionServlet extends HttpServlet {
             }
         }
         
-        String textToEncrypt = request.getParameter("textToEncrypt");
-
-        String encryptedText = "";
-        if (!textToEncrypt.equals("")) {
-            encryptedText = CBCEncryption.encrypt(textToEncrypt);
+        String text = request.getParameter("text");
+        String decrypt = request.getParameter("decrypt");
+        
+        String output;
+        if (decrypt != null) {
+            output = CBCEncryption.decrypt(text);
+        }
+        else {
+            output = CBCEncryption.encrypt(text);
         }
          
         
@@ -105,11 +109,14 @@ public class EncryptionServlet extends HttpServlet {
             out.println("<title>Servlet MyServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            if (!encryptedText.equals("")) {
-                out.println("<h1>" + encryptedText + "</h1>");
+            if (text.equals("")) {
+                out.println("<h3>Por favor, ingresa in texto a encriptar.</h3><br /> <h3>Hace click <a href='encrypt.html'>aqui</a> para volver</h3>");
+            }
+            else if (decrypt != null) {
+                out.println("<h1>Texto desencriptado: " + output + "</h1>");
             }
             else {
-                out.println("<h3>Por favor, ingresa in texto a encriptar.</h3><br /> <h3>Hace click <a href='encrypt.html'>aqui</a> para volver</h3>");
+                out.println("<h1>Texto encriptado: " + output + "</h1>");
             }
             
             out.println("</body>");
