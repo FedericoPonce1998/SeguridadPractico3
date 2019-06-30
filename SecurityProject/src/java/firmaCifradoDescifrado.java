@@ -18,7 +18,7 @@ import javax.xml.bind.DatatypeConverter;
 
 /**
  *
- * @author ceibal
+ * @author Noe
  */
 @WebServlet(urlPatterns = {"/firmaCifradoDescifrado"})
 public class firmaCifradoDescifrado extends HttpServlet {

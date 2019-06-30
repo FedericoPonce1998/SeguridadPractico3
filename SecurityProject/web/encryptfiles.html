@@ -14,23 +14,88 @@ and open the template in the editor.
     </head>
     <body>
         <header>
+            <h2>Universidad Católica del Uruguay</h2>
             <h2>Práctico 3</h2>
         </header>
-        <div class="box">
-            
+        <div class="centered">            
             <form method="POST" action="EncryptFilesServlet">  
-                <h3 style="float: left;">Ingrese la ruta del archivo a cifrar</h3>
-                <input style="float: left" placeholder="Nombre archivo" name="fileName" value="" /> <br/> <br/>
-                <h3 style="float: left;">Ingrese la ruta destino del archivo cifrado</h3>
-                <input style="float: left" placeholder="Nombre archivo" name="fileNameDestination" value="" /> <br/> <br/>
-                <h3 style="float: left;">Ingrese la clave para cifrar</h3>
-                <input style="float: left;" placeholder="Clave" name="key" value="" /> <br/>
-                <h3 style="float: left;">Ingrese un vector de inicializaci&oacute;n</h3>
-                <input style="float: left;" placeholder="Vector" name="IVector" value="" /> <br/>
-                <button type="submit">Cifrar</button> <br/>
-                <button class="pull-right" onclick="action='Logout'" >Cerrar Sesion</button>
-            </form>
-                    
+                <table>
+                    <tr>
+                        <td>
+                            <h3 style="float: left;">Ingrese la ruta del archivo a cifrar</h3>
+                        </td>
+                        <td>
+                             <input style="float: left" placeholder="Ruta de archivo" name="fileName" value="" />
+                        </td>
+                        <td>
+                            <h3 style="float: left;">Ingrese la ruta destino del archivo cifrado</h3>
+                        </td>
+                        <td>
+                            <input style="float: left" placeholder="Ruta destino" name="fileNameDestination" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3 style="float: left;">Ingrese la clave para cifrar</h3>
+                        </td>
+                        <td>
+                            <input style="float: left;" placeholder="Clave" name="key" value="" />
+                        </td>
+                        <td>
+                            <h3 style="float: left;">Ingrese un vector de inicializaci&oacute;n</h3>
+                        </td>
+                        <td>
+                            <input style="float: left;" placeholder="Vector" name="IVector" value="" /> <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="submit">Cifrar</button> <br/>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><h4><a href="hello.html">Volver a la Pantalla Principal</a></h4></td>
+                        <td></td>
+                    </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><br/></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="pull-right" onclick="action='Logout'" >Cerrar Sesion</button>
+                        </td>
+                    </tr>
+                </table>           
+            </form>                    
         </div>
         <footer>
             <p>Juan Dibot - María Parapar - Federico Ponce de León</p>
