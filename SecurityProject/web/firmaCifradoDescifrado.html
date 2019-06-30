@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Firma Digital</title>
+        <title>Firma Digital - Verificacion</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -31,30 +31,14 @@ and open the template in the editor.
                 <tr>
                     <td></td>                  
                     <td>
-                        <form method="POST" action="FirmaServlet"> 
+                        <form method="POST" action="firmaCifradoDescifrado"> 
                             <table>
                                 <tr>
                                     <td>
-                                        <h3>Firma de cifrado</h3>
+                                        <h3>Texto de origen</h3>
                                     </td>
                                     <td>
-                                        <input placeholder="Firma de cifrado" name="textoClave" value=""/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h3>Nombre del archivo</h3>    
-                                    </td>
-                                    <td>
-                                        <input placeholder="Nombre del archivo" name="fileName" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h3>Ruta de destino</h3>
-                                    </td>
-                                    <td>
-                                        <input placeholder="Destino de archivo" name="destinoName" value=""/>
+                                        <input placeholder="Texto de Origen" name="textoClave" value=""/>
                                     </td>
                                 </tr>
                                 <tr>

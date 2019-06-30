@@ -4,13 +4,9 @@
  * and open the template in the editor.
  */
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
+import java.security.KeyPair;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,18 +14,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.security.KeyPair;
 import javax.xml.bind.DatatypeConverter;
-import security.FileEncryption;
-
 
 /**
  *
- * @author Noe
+ * @author ceibal
  */
-@WebServlet(urlPatterns = {"/FirmaServlet"})
-public class FirmaServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/firmaCifradoDescifrado"})
+public class firmaCifradoDescifrado extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,10 +40,10 @@ public class FirmaServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FirmaServlet</title>");            
+            out.println("<title>Servlet firmaCifradoDescifrado</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FirmaServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet firmaCifradoDescifrado at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -83,8 +75,7 @@ public class FirmaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        
+            
         try (PrintWriter out = response.getWriter()) {
             Cookie[] cookies = request.getCookies();
             ServletContext sc = getServletContext();
@@ -99,20 +90,15 @@ public class FirmaServlet extends HttpServlet {
                     }
                 }
             }        
-        //}
-        
-        //Parametros 
-        String fileName = request.getParameter("fileName");
-        String destinoName = request.getParameter("destinoName")+ "/" + fileName + ".pdf";
-        String textoClave = request.getParameter("textoClave");
-        
-        response.setContentType("text/html;charset=UTF-8"); 
-        
-        //Instancio EncryptFirma
-        EncryptFirma encrypt = new EncryptFirma();
-        
-        //Firmo digitalmente el archivo
-        //try{
+            
+            //Parametros 
+            String textoClave = request.getParameter("textoClave");
+            
+            response.setContentType("text/html;charset=UTF-8"); 
+            
+            //Instancio EncryptFirma
+            EncryptFirma encrypt = new EncryptFirma();
+            
             if(!encrypt.existenClaves()){
                 //Si no existe creo las claves en /tmp
                 KeyPair key = encrypt.generateKey();
@@ -128,30 +114,31 @@ public class FirmaServlet extends HttpServlet {
             //Realizo la firma para cifrar
             final String firma = encrypt.firmar(textoClave, priv);
             
-            //Agrego la firma en un documento
-            Document documento = new Document();
+            //Codificacion Base64Binary de clave publica
+            final String pub = DatatypeConverter.printBase64Binary( key.getPublic().getEncoded() );
 
-            PdfWriter.getInstance(documento, new FileOutputStream(destinoName));
-            documento.open();
-
-            Paragraph parrafo = new Paragraph(firma);
-            documento.add(parrafo);
-            documento.close();
+            //Verifica la firma
+            final boolean verif = encrypt.verificarFirma( textoClave, firma, pub );
             
-            //Como el archivo fue firmado correctamente despliego mensaje
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet MyServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Archivo firmado correctamente</h1>");
-            out.println("<h3>Archivo: " + destinoName + "</h3>");
-            out.println("<h3><a href=\"firmadoDigital.html\">Volver</a></h3>");
+            out.println("<h1>Datos obtenidos</h1>");
+            out.println("<h4>Texto de origen: " + textoClave + "</h4>");
+            out.println("<h4>Firma: " + firma + "</h4>");            
+            if(verif == true){
+                out.println("<h4>Verifica?: SI </h4>");
+            }else{
+                out.println("<h4>Verifica?: NO </h4>");
+            }
+            out.println("<h3><a href=\"firmaCifradoDescifrado.html\">Volver</a></h3>");
             out.println("</body>");
             out.println("</html>");
-        }
-        catch(Exception ex){
+            
+        }catch(Exception ex){
             response.sendRedirect("exception-error.html");   
         }
     }
