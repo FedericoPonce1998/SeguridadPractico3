@@ -96,29 +96,38 @@ public class firmaCifradoDescifrado extends HttpServlet {
             
             response.setContentType("text/html;charset=UTF-8"); 
             
-            //Instancio EncryptFirma
-            EncryptFirma encrypt = new EncryptFirma();
-            
-            if(!encrypt.existenClaves()){
-                //Si no existe creo las claves en /tmp
-                KeyPair key = encrypt.generateKey();
-                encrypt.guardoClaves(key);
+            boolean showErrorMessage = false;
+            boolean verif = false;
+            String firma = "";
+            if (textoClave.equals("")) {
+                showErrorMessage = true;
             }
+            else {
+                EncryptFirma encrypt = new EncryptFirma();
             
-            //Cargo las claves (publica y privada)
-            KeyPair key = encrypt.CargoClave();
+                if(!encrypt.existenClaves()){
+                    //Si no existe creo las claves en /tmp
+                    KeyPair key = encrypt.generateKey();
+                    encrypt.guardoClaves(key);
+                }
             
-            //Codificacion Base64Binary de clave privada
-            final String priv = DatatypeConverter.printBase64Binary( key.getPrivate().getEncoded() ); 
-            
-            //Realizo la firma para cifrar
-            final String firma = encrypt.firmar(textoClave, priv);
-            
-            //Codificacion Base64Binary de clave publica
-            final String pub = DatatypeConverter.printBase64Binary( key.getPublic().getEncoded() );
+                //Cargo las claves (publica y privada)
+                KeyPair key = encrypt.CargoClave();
 
-            //Verifica la firma
-            final boolean verif = encrypt.verificarFirma( textoClave, firma, pub );
+                //Codificacion Base64Binary de clave privada
+                final String priv = DatatypeConverter.printBase64Binary( key.getPrivate().getEncoded() ); 
+
+                //Realizo la firma para cifrar
+                firma = encrypt.firmar(textoClave, priv);
+
+                //Codificacion Base64Binary de clave publica
+                final String pub = DatatypeConverter.printBase64Binary( key.getPublic().getEncoded() );
+
+                //Verifica la firma
+                verif = encrypt.verificarFirma( textoClave, firma, pub );
+            }
+            //Instancio EncryptFirma
+            
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -126,14 +135,20 @@ public class firmaCifradoDescifrado extends HttpServlet {
             out.println("<title>Servlet MyServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Datos obtenidos</h1>");
-            out.println("<h4>Texto de origen: " + textoClave + "</h4>");
-            out.println("<h4>Firma: " + firma + "</h4>");            
-            if(verif == true){
-                out.println("<h4>Verifica?: SI </h4>");
-            }else{
-                out.println("<h4>Verifica?: NO </h4>");
+            if (showErrorMessage) {
+                out.println("<h1>Por favor, ingrese una firma valida</h1>");
             }
+            else {
+                out.println("<h1>Datos obtenidos</h1>");
+                out.println("<h4>Texto de origen: " + textoClave + "</h4>");
+                out.println("<h4>Firma: " + firma + "</h4>");            
+                if(verif == true){
+                    out.println("<h4>Verifica?: SI </h4>");
+                }else{
+                    out.println("<h4>Verifica?: NO </h4>");
+                }
+            }
+            
             out.println("<h3><a href=\"firmaCifradoDescifrado.html\">Volver</a></h3>");
             out.println("</body>");
             out.println("</html>");
